@@ -1,12 +1,12 @@
 const baseURL = 'http://localhost:3000/api/munros/'
 
 export default {
-    getMunros() {
+    getBagged() {
       return fetch(baseURL)
         .then(res => res.json())
     },
   
-    postMunros(payload) {
+    postBagged(payload) {
       return fetch(baseURL, {
         method: 'POST',
         body: JSON.stringify(payload),
@@ -15,7 +15,7 @@ export default {
         .then(res => res.json())
     },
   
-    deleteMunros(id) {
+    deleteBagged(id) {
       return fetch(baseURL + id, {
         method: 'DELETE'
       })

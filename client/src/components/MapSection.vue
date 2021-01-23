@@ -30,7 +30,7 @@ export default {
       zoom: 8,
       center: [57.270368,-3.969099],
       bounds: null,
-      props: ['munros','bagged']
+      props: ['munros', 'bagged']
     };
     
   },

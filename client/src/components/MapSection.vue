@@ -1,6 +1,6 @@
 <template lang="html">
 
-  <div style="height: 80em; width: 80em" id="mapContainer">
+  <div style="height: 65em; width: 80em" id="mapContainer">
     
     <l-map
       style="height: 100%; width: 100%"
@@ -26,12 +26,13 @@ export default {
   },
   data () {
     return {
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      zoom: 3,
-      center: [47.413220, -1.219482],
+      url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token=token here',
+      zoom: 8,
+      center: [57.270368,-3.969099],
       bounds: null,
-      accessToken: 'pk.eyJ1IjoicnVtYnVyYWswMDciLCJhIjoiY2trMDY3ZHdxMGVlMzJvcGMyZW8wMjU3dCJ9.iFV6KAaTxjBXXSh_WWRXCA'
+      props: ['munros','bagged']
     };
+    
   },
   methods: {
     zoomUpdated (zoom) {

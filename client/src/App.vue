@@ -2,7 +2,7 @@
   <div id="app">
     
     <munros-list :munros="munros"/> 
-    <map-section id="map" />
+    <map-section :munros="munros" :bagged="bagged"/>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import MapSection from './components/MapSection';
 
 
 export default {
-  name: 'App',
+  name: 'app',
   data() {
      return {
        bagged: [],

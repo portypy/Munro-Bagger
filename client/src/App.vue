@@ -2,8 +2,7 @@
   <div id="app">
     
     <munros-list :munros="munros"/> 
-    <map-section />
-    <!-- <p>{{ bagged }}</p> -->
+    <map-section id="map" />
   </div>
 </template>
 
@@ -55,4 +54,5 @@ export default {
   display: flex;
   width: 100%;
 }
+
 </style>

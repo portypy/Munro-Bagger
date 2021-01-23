@@ -14,7 +14,12 @@
       @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url"></l-tile-layer>
-      <l-marker :lat-lng="markerLatLng" class="marker" ></l-marker>
+      <!-- <l-marker :lat-lng="markerLatLng" ></l-marker> -->
+      <l-marker 
+              v-for="marker in this.munros"
+              :key="marker._id"
+              :lat-lng="[marker.latlng_lat, marker.latlng_lng]" 
+              ></l-marker>
     </l-map>
   </div>
 </template>
@@ -31,8 +36,7 @@ L.Icon.Default.mergeOptions({
 //this one to fix known problem with maps: 
 import "leaflet/dist/leaflet.css";
 import {LMap, LTileLayer, LMarker} from 'vue2-leaflet';
-import { latLngBounds, latLng } from "leaflet"
-
+import { latLngBounds } from "leaflet"
 //not sure how to display icon properly and keep it small when unzooming
   // how to load markers after tiles??? 
   // feel free to change icon
@@ -43,11 +47,12 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    latLngBounds
+    latLngBounds,
   },
+  props: ['bagged', 'munros'],
   data () {
     return {
-      url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnVtYnVyYWswMDciLCJhIjoiY2trMDY3ZHdxMGVlMzJvcGMyZW8wMjU3dCJ9.iFV6KAaTxjBXXSh_WWRXCA',
+      url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token=token here',
       zoom: 8,
       minZoom: 8,
       center: [57.270368,-3.969099],
@@ -55,12 +60,13 @@ export default {
         [58.78681243755122, -1.954226318129988],
         [55.69782468189247, -5.997195068129988]
       ]),
+      //need some adjustments to the west, check when zoom in
       maxBounds: latLngBounds([
         [58.78681243755122, -1.954226318129988],
         [55.69782468189247, -5.997195068129988]
       ]),
-      markerLatLng: [57.070368, -3.669099],
-      props: ['munros', 'bagged']
+      // markerLatLng: [57.070368, -3.669099],
+      
     };
     
   },
@@ -81,11 +87,5 @@ export default {
 
 <style lang="css" scoped>
 
-.marker{
-  height: 100%;
-margin: 0;
-padding: 0;
-width: 100%;
-z-index: 0;
-}
+
 </style>

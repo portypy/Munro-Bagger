@@ -8,7 +8,6 @@
     "server:dev": "nodemon server.js",
     "seeds": "mongo < ./db/seeds.js"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",

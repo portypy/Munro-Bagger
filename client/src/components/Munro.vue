@@ -1,8 +1,9 @@
 <template lang="html">
 <div class="munro">
+    <hr>
     <h2>{{ munro.name }}</h2>
-    <p>{{ munro.height }}</p>
-
+    <h3>Height: {{ munro.height }}</h3>
+    <h4>Meaning: {{ munro.meaning}}</h4>
     <button>Bag Munro</button>
   </div>
 </template>
@@ -16,5 +17,7 @@ export default {
 </script>
 
 <style>
-
+#munro {
+  width: 100%
+}
 </style>

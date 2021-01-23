@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <p>{{ bagged }}</p>
-    <munros-list :munros="munros"/>
+    
+    <munros-list :munros="munros"/> 
+    <map-section />
+    <!-- <p>{{ bagged }}</p> -->
   </div>
 </template>
 
 <script>
-import MunroService from './services/MunroService'
+import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
+import MapSection from './components/MapSection';
+
 
 export default {
   name: 'App',
@@ -18,7 +22,9 @@ export default {
      }
   },
   components: {
-    'munros-list': MunrosList
+    'munros-list': MunrosList,
+    'map-section': MapSection,
+    
   },
   mounted() {
     this.fetchBagged();
@@ -44,8 +50,9 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  width: 100%;
 }
 </style>

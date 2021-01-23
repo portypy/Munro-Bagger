@@ -8,6 +8,7 @@
       :center="center"
       :bounds="bounds"
       :max-bounds="maxBounds"
+      :min-zoom="minZoom"
       @update:zoom="zoomUpdated"
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
@@ -48,8 +49,7 @@ export default {
     return {
       url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnVtYnVyYWswMDciLCJhIjoiY2trMDY3ZHdxMGVlMzJvcGMyZW8wMjU3dCJ9.iFV6KAaTxjBXXSh_WWRXCA',
       zoom: 8,
-      // not sure why  maxZoom doesnt work
-      maxZoom: 8,
+      minZoom: 8,
       center: [57.270368,-3.969099],
       bounds: latLngBounds([
         [58.78681243755122, -1.954226318129988],
@@ -64,9 +64,7 @@ export default {
     };
     
   },
-  mounted() {
-      setTimeout(function() { window.dispatchEvent(new Event('resize')) }, 250);
-},
+  
   methods: {
     zoomUpdated (zoom) {
       this.zoom = zoom;

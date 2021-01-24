@@ -7,17 +7,16 @@ export default {
 name: 'weather-section',
 data () {
     return {
-        locationID: '',
-        dataFromAPI: null
+        dataFromAPI: []
     }
 },
-props: ['id'],
+props: ['locationId'],
 methods: {
-    getWeather(locationID) {
-        key = 'b9805b0f-ca36-48a5-a61c-190441b180ed';
-        fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${locationID}?res=3hourly&key=${key}`)
+    getWeather() {
+        key = '';
+        fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/350373?res=3hourly&key=`)
         .then( res => res.json())
-        .then(id => this.dataFromAPI = id);
+        .then(data => this.dataFromAPI = data);
 
     }
 }

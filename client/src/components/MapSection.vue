@@ -1,6 +1,6 @@
 <template lang="html">
 
-  <div style="height: 65em; width: 80em" id="mapContainer">
+  <div style="height: 100vh; width: 50vw; position: fixed; right: 0px;" id="mapContainer">
     
     <l-map
       style="height: 100%; width: 100%"
@@ -38,9 +38,11 @@ import L from 'leaflet';
 //this one to fix known problem with icons:
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('../assets/vector-mountains.jpeg'),
-  iconUrl: require('../assets/vector-mountains.jpeg'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+  iconRetinaUrl: require('../assets/map-pin.png'),
+  iconUrl: require('../assets/map-pin.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+  iconSize:     [20, 18], // size of the icon
+  shadowSize:   [10, 10], // size of the shadow
 });
 //this one to fix known problem with maps: 
 import "leaflet/dist/leaflet.css";

@@ -6,6 +6,7 @@
            <button v-on:click="filterHeight">Height</button>
             <button v-on:click="filterName">Name</button>
             <button>Temp</button>
+            <button> Bagged Munros</button>
        </div>
 	</div>
 </template>

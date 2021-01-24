@@ -17,22 +17,23 @@ export default {
         'munro-list-header': MunroListHeader
     },
     props: ['munros'],
-    mounted(){
-    eventBus.$on('filter-by-height', () => {
-      this.munros.sort((a, b) => parseFloat(a.height) - parseFloat(b.height));
-    }),
-     eventBus.$on('filter-by-name', () => {
-      this.munros.sort( function( a, b ) {
-        a = a.name.toLowerCase();
-        b = b.name.toLowerCase();
 
+    mounted(){
+
+    eventBus.$on('filter-by-height', () => {
+      this.munros.sort((munro1, munro2) => munro1.height - munro2.height);
+    }),
+
+    eventBus.$on('filter-by-name', () => {
+      this.munros.sort( function( a, b ) {
+        a = a.name;
+        b = b.name;
         return a < b ? -1 : a > b ? 1 : 0;
     });
     })
-  }
-
+  
 }
-
+}
 </script>
 
 <style>

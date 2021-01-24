@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { eventBus} from './main.js';
 import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
 import MapSection from './components/MapSection';
@@ -17,7 +18,8 @@ export default {
   data() {
      return {
        bagged: [],
-       munros: []
+       munros: [],
+       selectedMunro: {}
      }
   },
   components: {
@@ -28,7 +30,12 @@ export default {
   mounted() {
     this.fetchBagged();
     this.fetchMunros();
+    eventBus.$on('selectMunro', (selectedMunro) => {
+      this.selectedMunro = selectedMunro
+      })
+     
   },
+
   methods: {
     fetchBagged() {
       MunroService.getBagged()

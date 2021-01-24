@@ -25,15 +25,17 @@
       layer-type="base"/>
       <!-- <l-marker :lat-lng="markerLatLng" ></l-marker> -->
       <l-marker 
-              v-for="marker in this.munros"
-              :key="marker._id"
-              :lat-lng="[marker.latlng_lat, marker.latlng_lng]" 
+              v-for="(marker, index) in this.munros"
+              :key="marker.id"
+              @click="selectMunro(marker)"
+              :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
               ></l-marker>
     </l-map>
   </div>
 </template>
 
 <script>
+import { eventBus } from '../main.js';
 import L from 'leaflet';
 //this one to fix known problem with icons:
 delete L.Icon.Default.prototype._getIconUrl;
@@ -64,7 +66,7 @@ export default {
   props: ['bagged', 'munros'],
   data () {
     return {
-      
+      "selectedMunro" : {},
       zoom: 8,
       minZoom: 8,
       center: [57.270368,-3.969099],
@@ -115,7 +117,12 @@ export default {
     },
     boundsUpdated (bounds) {
       this.bounds = bounds;
-    }
+    },
+    selectMunro(item) {
+      console.log(item);
+      this.selectedMunro = item
+      eventBus.$emit('selectMunro', this.selectedMunro)
+    },
   }
 }
 </script>

@@ -8,6 +8,7 @@
 <script>
 import Munro from './Munro';
 import MunroListHeader from './MunroListHeader';
+import { eventBus } from '../main.js';
 
 export default {
     name: 'munros-list',
@@ -15,10 +16,24 @@ export default {
         'munro': Munro,
         'munro-list-header': MunroListHeader
     },
-    props: ['munros']
+    props: ['munros'],
 
+    mounted(){
+
+    eventBus.$on('filter-by-height', () => {
+      this.munros.sort((munro1, munro2) => munro1.height - munro2.height);
+    }),
+
+    eventBus.$on('filter-by-name', () => {
+      this.munros.sort( function( a, b ) {
+        a = a.name;
+        b = b.name;
+        return a < b ? -1 : a > b ? 1 : 0;
+    });
+    })
+  
 }
-
+}
 </script>
 
 <style>

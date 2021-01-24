@@ -19,7 +19,7 @@ export default {
      return {
        bagged: [],
        munros: [],
-       selectedMunro: {}
+       selectedMunro: []
      }
   },
   components: {

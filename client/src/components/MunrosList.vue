@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="MunrosList">
       <munro-list-header/>
+      <selected-munro/>
 		<munro v-for="munro, index in munros" :key="index" :munro="munro" />
 	</div>
 </template>
@@ -8,13 +9,15 @@
 <script>
 import Munro from './Munro';
 import MunroListHeader from './MunroListHeader';
+import SelectedMunro from './SelectedMunro';
 import { eventBus } from '../main.js';
 
 export default {
     name: 'munros-list',
     components: {
         'munro': Munro,
-        'munro-list-header': MunroListHeader
+        'munro-list-header': MunroListHeader,
+        'selected-munro': SelectedMunro
     },
     props: ['munros'],
 

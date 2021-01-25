@@ -57,7 +57,20 @@ db.munros.insertMany([
         "metoffice_loc_id": "352399",
         "region": "Glen Shee to Glen Esk",
         "meaning": "Little loch of the noisy sound (Lochan na Gaire)"
-    },   
+    },
+    {
+        "name": "Bynack More",
+        "height": 1090,
+        "gridref_letters": "NJ",
+        "gridref_eastings": "04190",
+        "gridref_northings": "06373",
+        "latlng_lat": 57.13822,
+        "latlng_lng": -3.584716,
+        "smcid": "M054",
+        "metoffice_loc_id": "350704",
+        "region": "Deeside to Speyside - The Cairngorms",
+        "meaning": "Obscure"
+        }   
 
 ]);
 

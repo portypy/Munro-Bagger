@@ -11,7 +11,7 @@ import { eventBus} from './main.js';
 import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
 import MapSection from './components/MapSection';
-import Weather from './components/Weather'
+// import Weather from './components/Weather'
 
 
 export default {
@@ -26,7 +26,7 @@ export default {
   components: {
     'munros-list': MunrosList,
     'map-section': MapSection,
-    'weather-section': Weather
+    // 'weather-section': Weather
     
   },
   mounted() {

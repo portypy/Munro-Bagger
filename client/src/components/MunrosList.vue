@@ -3,6 +3,7 @@
       <munro-list-header/>
       <selected-munro/>
       <weather-section/>
+      <bagged-munro v-for="baggedMunro in bagged" :baggedMunro="baggedMunro" />
 		<munro v-for="munro, index in munros" :key="index" :munro="munro" />
 	</div>
 </template>
@@ -12,6 +13,7 @@ import Munro from './Munro';
 import MunroListHeader from './MunroListHeader';
 import SelectedMunro from './SelectedMunro';
 import Weather from './Weather'
+import BaggedMunro from './BaggedMunro';
 import { eventBus } from '../main.js';
 
 export default {
@@ -20,9 +22,12 @@ export default {
         'munro': Munro,
         'munro-list-header': MunroListHeader,
         'selected-munro': SelectedMunro,
-        'weather-section': Weather
+        'weather-section': Weather,
+        'bagged-munro': BaggedMunro
     },
-    props: ['munros'],
+    props: ['munros',
+            'bagged'],
+          
 
     mounted(){
 

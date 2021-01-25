@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <munros-list :munros="munros"/> 
+    <munros-list :munros="munros" :bagged="bagged"/> 
     <map-section :munros="munros" :bagged="bagged"/>
     
   </div>

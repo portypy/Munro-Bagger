@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <bagged-munros-list :bagged="bagged"/>
     <munros-list :munros="munros"/> 
     <map-section :munros="munros" :bagged="bagged"/>
     
@@ -9,7 +8,6 @@
 
 <script>
 import { eventBus} from './main.js';
-import BaggedMunrosList from './components/BaggedMunrosList';
 import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
 import MapSection from './components/MapSection';

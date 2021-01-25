@@ -10,6 +10,7 @@
 import Munro from './Munro';
 import MunroListHeader from './MunroListHeader';
 import SelectedMunro from './SelectedMunro';
+import BaggedMunrosList from "./BaggedMunrosList";
 import { eventBus } from '../main.js';
 
 export default {
@@ -17,7 +18,8 @@ export default {
     components: {
         'munro': Munro,
         'munro-list-header': MunroListHeader,
-        'selected-munro': SelectedMunro
+        'selected-munro': SelectedMunro,
+        'bagged-munro-list' : BaggedMunrosList
     },
     props: ['munros'],
 

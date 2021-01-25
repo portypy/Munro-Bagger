@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    
+    <bagged-munros-list :bagged="bagged"/>
     <munros-list :munros="munros"/> 
     <map-section :munros="munros" :bagged="bagged"/>
     <weather-section></weather-section>
@@ -9,10 +9,11 @@
 
 <script>
 import { eventBus} from './main.js';
+import BaggedMunrosList from './components/BaggedMunrosList';
 import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
 import MapSection from './components/MapSection';
-import Weather from './components/Weather'
+import Weather from './components/weather'
 
 
 export default {
@@ -27,7 +28,8 @@ export default {
   components: {
     'munros-list': MunrosList,
     'map-section': MapSection,
-    'weather-section': Weather
+    'weather-section': Weather,
+    'bagged-munros-list': BaggedMunrosList
     
   },
   mounted() {
@@ -35,7 +37,12 @@ export default {
     this.fetchMunros();
     eventBus.$on('selectMunro', (selectedMunro) => {
       this.selectedMunro = selectedMunro
-      })
+      });
+
+    eventBus.$on('bag-munro', payload => {
+      MunroService.postBagged(payload)
+      .then(munro => this.bagged.push(munro));
+    });
      
   },
 

@@ -27,7 +27,7 @@ mounted() {
 },
 methods: {
     getWeather(munro) {
-        fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${munro.metoffice_loc_id}?`)
+        fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${munro.metoffice_loc_id}?gaa`)
         .then( res => res.json())
         .then(data => this.dataFromAPI = data);
 

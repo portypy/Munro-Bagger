@@ -1,8 +1,11 @@
-<template>
-<div>
-    <h2>Weather:
-  <div v-if="dataFromAPI" ><p>{{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].F }} </p></div>
-</h2>
+<template lang="html">
+<div v-if="dataFromAPI">
+    <h2>Weather Forecast:</h2>
+  <div><p> For:{{  dataFromAPI.SiteRep.DV.Location.Period[1].value  }} </p></div>
+  <div><p> Temperature:{{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].T }} </p></div>
+  <div><p> Feels like temperature:{{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].F }} </p></div>
+  <div><p> Precipitation Probability:{{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].Pp }}% </p></div>
+
 </div>
 </template>
 
@@ -13,8 +16,8 @@ export default {
 name: 'weather-section',
 data () {
     return {
-        dataFromAPI: [],
-        dataObject: 'dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0]'
+        dataFromAPI: null,
+        dataObject: 'dataFromAPI.SiteRep.DV.Location'
     }
 },
 mounted() {
@@ -24,11 +27,7 @@ mounted() {
 },
 methods: {
     getWeather(munro) {
-        fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${munro.metoffice_loc_id}?res=3hourly&key=
-
-
-
-`)
+        fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${munro.metoffice_loc_id}?`)
         .then( res => res.json())
         .then(data => this.dataFromAPI = data);
 

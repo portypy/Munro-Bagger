@@ -3,7 +3,7 @@
     <bagged-munros-list :bagged="bagged"/>
     <munros-list :munros="munros"/> 
     <map-section :munros="munros" :bagged="bagged"/>
-    <weather-section></weather-section>
+    
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import BaggedMunrosList from './components/BaggedMunrosList';
 import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
 import MapSection from './components/MapSection';
-import Weather from './components/weather'
+import Weather from './components/Weather'
 
 
 export default {
@@ -28,8 +28,7 @@ export default {
   components: {
     'munros-list': MunrosList,
     'map-section': MapSection,
-    'weather-section': Weather,
-    'bagged-munros-list': BaggedMunrosList
+    'weather-section': Weather
     
   },
   mounted() {

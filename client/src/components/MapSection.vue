@@ -50,10 +50,7 @@ L.Icon.Default.mergeOptions({
 import "leaflet/dist/leaflet.css";
 import {LMap, LTileLayer, LMarker, LControlLayers} from 'vue2-leaflet';
 import { latLngBounds } from "leaflet"
-//not sure how to display icon properly and keep it small when unzooming
-  // how to load markers after tiles??? 
-  // feel free to change icon
-  // diferent icon/colour for bagged?
+
 
 export default {
   components: {

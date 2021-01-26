@@ -15,11 +15,14 @@
                         <weather-section/>
                     </div>
                     <div v-if="taboption ==='allmunros'">
+                        <div class="search-wrapper">
+                        <input type="text" v-model="search" placeholder="Search munro.."/>
+                        </div>
                           <div id="filters" > 
                       <button v-on:click="filterHeight">Height</button>
                       <button v-on:click="filterName">Name</button>
                       </div>
-                        <munro v-for="munro, index in munros" :key="index" :munro="munro" />
+                        <munro v-for="munro, index in filteredList" :key="index" :munro="munro" />
                     </div>
                     <div v-if="taboption ==='mybag'">
                        <bagged-munro v-for="baggedMunro in bagged" :baggedMunro="baggedMunro" />
@@ -44,6 +47,7 @@ export default {
      data() {
             return {
                 taboption: 'selectmunro',
+                search: ''
             }
         },
     components: {
@@ -73,7 +77,14 @@ export default {
       eventBus.$on('selectMunro', () => {
           this.taboption='selectmunro'
       });
+    },
+    computed: {
+    filteredList() {
+      return this.munros.filter(munro => {
+        return munro.name.toLowerCase().includes(this.search.toLowerCase())
+      })
     }
+  }
 
 }
 </script>

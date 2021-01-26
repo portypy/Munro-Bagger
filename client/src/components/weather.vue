@@ -3,7 +3,7 @@
     <h2>Weather Forecast:</h2>
     <!-- today -->
     <div>
-        <div><p> For today: {{  dataFromAPI.SiteRep.DV.Location.Period[0].value  }} </p></div>
+        <div><p> For today: {{  getDayDate(dataFromAPI.SiteRep.DV.Location.Period[0].value)  }} </p></div>
         <div class="date">
             <div>
                     {{dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].$  }}: <br>
@@ -11,7 +11,7 @@
                     Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].FDm}} <br>
                     Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].D}} <br>
                     Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].PPd }}% <br>
-                    Visibility: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].V) }} 
+                    Vis.: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].V) }} 
             </div>
             <div>
                     {{dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].$  }} <br>
@@ -19,13 +19,13 @@
                     Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].FNm}} <br>
                     Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].D}} <br>
                     Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].PPn }}% <br>
-                    Visibility: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].V) }} 
+                    Vis.: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].V) }} 
             </div>
         </div>
     </div>
     <!-- tomorrow -->
     <div>
-        <div><p> For tomorrow: {{  dataFromAPI.SiteRep.DV.Location.Period[1].value  }} </p></div>
+        <div><p> For tomorrow: {{  getDayDate(dataFromAPI.SiteRep.DV.Location.Period[1].value)  }} </p></div>
         <div class="date">
             <div>
                     {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].$  }}: <br>
@@ -33,7 +33,7 @@
                     Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].FDm}} <br>
                     Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].D}} <br>
                     Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].PPd }}% <br>
-                    Visibility: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].V) }} 
+                    Vis: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].V) }} 
             </div>
             <div>
                     {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].$  }} <br>
@@ -41,13 +41,13 @@
                     Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].FNm}} <br>
                     Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].D}} <br>
                     Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].PPn }}% <br>
-                    Visibility: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].V) }} 
+                    Vis: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].V) }} 
             </div>
         </div>
     </div>
     <!-- after tomorrow -->
     <div>
-        <div><p> For : {{  dataFromAPI.SiteRep.DV.Location.Period[2].value  }} </p></div>
+        <div><p> For : {{  getDayDate(dataFromAPI.SiteRep.DV.Location.Period[2].value)  }} </p></div>
         <div class="date">
             <div>
                     {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].$  }}: <br>
@@ -55,7 +55,7 @@
                     Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].FDm}} <br>
                     Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].D}} <br>
                     Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].PPd }}% <br>
-                    Visibility: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].V) }} 
+                    Vis.: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].V) }} 
             </div>
             <div>
                     {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].$  }} <br>
@@ -63,7 +63,7 @@
                     Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].FNm}} <br>
                     Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].D}} <br>
                     Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].PPn }}% <br>
-                    Visibility: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].V) }} 
+                    Vis.: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].V) }} 
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@ export default {
 name: 'weather-section',
 data () {
     return {
-        dataFromAPI: null        
+        dataFromAPI: null
     }
 },
 mounted() {
@@ -93,11 +93,15 @@ methods: {
 
     },
     
-    
+    getDayDate(date){
+       if (date) {
+           return date.slice(0,-1)
+       } 
+    },
     getVisibility(code) {
         if ( code == "VP")
         {
-            return "Very poor - Less than 1 km"
+            return "V. poor - Less than 1 km"
         }
         else if ( code == "PO") 
         {
@@ -113,7 +117,7 @@ methods: {
         }
         else if ( code == "VG")
         {
-            return "Very good - Between 20-40 km"
+            return "V. good - Between 20-40 km"
         }
         else if ( code == "EX")
         {
@@ -129,6 +133,7 @@ methods: {
 <style lang="css">
 .date {
      display:flex;
+     justify-content: space-between;
     background: cornflowerblue;
     font-size: small;
     }

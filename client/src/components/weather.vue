@@ -1,25 +1,72 @@
-<template lang="html">
+<template>
 <div v-if="dataFromAPI">
     <h2>Weather Forecast:</h2>
-  <div><p> For: {{  dataFromAPI.SiteRep.DV.Location.Period[1].value  }} </p></div>
-  <div>
-    <p> {{  dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].$  }} </p>
-    <p> Temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].Dm }}  C</p>
-    <p> Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].FDm}} </p>
-    <p> Wind speed/gust: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].D}} </p>
-    <p> Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].PPd }}% </p>
-    <p> Visibility: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].V) }} </p>
-  </div>
-  <div>
-    <p> {{  dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].$  }} </p>
-    <p> Temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].Nm }} </p>
-    <p> Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].FNm}} </p>
-    <p> Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].PPn }}% </p>
-    <p> Visibility: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].V) }} </p>
-
-    </p>
-  </div>
-
+    <!-- today -->
+    <div>
+        <div><p> For today: {{  getDayDate(dataFromAPI.SiteRep.DV.Location.Period[0].value)  }} </p></div>
+        <div class="date">
+            <div>
+                    {{dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].$  }}: <br>
+                    Temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].Dm }}  C <br>
+                    Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].FDm}} <br>
+                    Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].D}} <br>
+                    Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].PPd }}% <br>
+                    Vis.: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].V) }} 
+            </div>
+            <div>
+                    {{dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].$  }} <br>
+                    Temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].Nm }} <br>
+                    Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].FNm}} <br>
+                    Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].D}} <br>
+                    Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[0].Rep[1].PPn }}% <br>
+                    Vis.: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[0].Rep[0].V) }} 
+            </div>
+        </div>
+    </div>
+    <!-- tomorrow -->
+    <div>
+        <div><p> For tomorrow: {{  getDayDate(dataFromAPI.SiteRep.DV.Location.Period[1].value)  }} </p></div>
+        <div class="date">
+            <div>
+                    {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].$  }}: <br>
+                    Temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].Dm }}  C <br>
+                    Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].FDm}} <br>
+                    Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].D}} <br>
+                    Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].PPd }}% <br>
+                    Vis: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].V) }} 
+            </div>
+            <div>
+                    {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].$  }} <br>
+                    Temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].Nm }} <br>
+                    Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].FNm}} <br>
+                    Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].D}} <br>
+                    Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[1].Rep[1].PPn }}% <br>
+                    Vis: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[1].Rep[0].V) }} 
+            </div>
+        </div>
+    </div>
+    <!-- after tomorrow -->
+    <div>
+        <div><p> For : {{  getDayDate(dataFromAPI.SiteRep.DV.Location.Period[2].value)  }} </p></div>
+        <div class="date">
+            <div>
+                    {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].$  }}: <br>
+                    Temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].Dm }}  C <br>
+                    Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].FDm}} <br>
+                    Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].D}} <br>
+                    Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].PPd }}% <br>
+                    Vis.: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].V) }} 
+            </div>
+            <div>
+                    {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].$  }} <br>
+                    Temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].Nm }} <br>
+                    Feels like temperature: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].FNm}} <br>
+                    Wind speed: {{ dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].S}}   {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].D}} <br>
+                    Precipitation Probability: {{dataFromAPI.SiteRep.DV.Location.Period[2].Rep[1].PPn }}% <br>
+                    Vis.: {{getVisibility(dataFromAPI.SiteRep.DV.Location.Period[2].Rep[0].V) }} 
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -30,13 +77,13 @@ export default {
 name: 'weather-section',
 data () {
     return {
-        dataFromAPI: null        
+        dataFromAPI: null
     }
 },
 mounted() {
-    // eventBus.$on('selectMunro',munro => {
-    //     this.getWeather(munro);
-    // })
+    eventBus.$on('selectMunro',munro => {
+        this.getWeather(munro);
+    })
 },
 methods: {
     getWeather(munro) {
@@ -46,11 +93,15 @@ methods: {
 
     },
     
-    
+    getDayDate(date){
+       if (date) {
+           return date.slice(0,-1)
+       } 
+    },
     getVisibility(code) {
         if ( code == "VP")
         {
-            return "Very poor - Less than 1 km"
+            return "V. poor - Less than 1 km"
         }
         else if ( code == "PO") 
         {
@@ -66,7 +117,7 @@ methods: {
         }
         else if ( code == "VG")
         {
-            return "Very good - Between 20-40 km"
+            return "V. good - Between 20-40 km"
         }
         else if ( code == "EX")
         {
@@ -79,6 +130,11 @@ methods: {
 }
 </script>
 
-<style>
-
+<style lang="css">
+.date {
+     display:flex;
+     justify-content: space-between;
+    background: cornflowerblue;
+    font-size: small;
+    }
 </style>

@@ -11,8 +11,7 @@ import { eventBus} from './main.js';
 import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
 import MapSection from './components/MapSection';
-import BaggedMunro from './components/BaggedMunro';
-import Weather from './components/Weather'
+// import Weather from './components/Weather'
 
 
 export default {
@@ -27,8 +26,7 @@ export default {
   components: {
     'munros-list': MunrosList,
     'map-section': MapSection,
-    'weather-section': Weather,
-    'bagged-munro': BaggedMunro
+    // 'weather-section': Weather
     
   },
   mounted() {
@@ -72,7 +70,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  /* margin-top: 60px; */
   display: flex;
   width: 100%;
 }

@@ -11,6 +11,7 @@ import { eventBus} from './main.js';
 import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
 import MapSection from './components/MapSection';
+import BaggedMunro from './components/BaggedMunro';
 import Weather from './components/Weather'
 
 
@@ -26,7 +27,8 @@ export default {
   components: {
     'munros-list': MunrosList,
     'map-section': MapSection,
-    'weather-section': Weather
+    'weather-section': Weather,
+    'bagged-munro': BaggedMunro
     
   },
   mounted() {
@@ -40,6 +42,12 @@ export default {
       MunroService.postBagged(payload)
       .then(munro => this.bagged.push(munro));
     });
+
+    eventBus.$on('delete-bagged', (id) => {
+      MunroService.deleteBagged(id);
+      const index = this.bagged.findIndex(bagged => bagged._id === id);
+      this.bagged.splice(index, 1);
+    })
      
   },
 

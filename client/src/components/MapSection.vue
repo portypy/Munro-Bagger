@@ -13,7 +13,6 @@
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
-      <!-- <l-tile-layer :url="url"></l-tile-layer> -->
       <l-control-layers position="topright"></l-control-layers>
       <l-tile-layer
       v-for="tileProvider in tileProviders"
@@ -23,18 +22,21 @@
       :url="tileProvider.url"
       :attribution="tileProvider.attribution"
       layer-type="base"/>
-      <!-- <l-marker :lat-lng="markerLatLng" ></l-marker> -->
       <l-marker 
-
-      
               v-for="(marker, index) in this.munros"
               :key="marker.id"
               @click="selectMunro(marker)"
               :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
               >
-              
               <l-popup>{{ selectedMunro.name }}</l-popup>
-              </l-marker>
+      </l-marker>
+      <!-- <div v-if="bagged" > -->
+      <l-circle-marker  v-if="bagged"
+      :lat-lng="circle.center"
+      :radius="circle.radius"
+      :color="circle.color"
+    />
+      <!-- </div> -->
       
     </l-map>
   </div>
@@ -43,36 +45,53 @@
 <script>
 import { eventBus } from '../main.js';
 import L from 'leaflet';
-//this one to fix known problem with icons:
+//this one to fix known problem with marker's icon(Vue2Leaflet+webpack): https://github.com/vue-leaflet/Vue2Leaflet/issues/103
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('../assets/map-pin.png'),
   iconUrl: require('../assets/map-pin.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-  iconSize:     [20, 20], // size of the icon
-  shadowSize:   [10, 10], // size of the shadow
+  iconSize:  [20, 20],  
+  shadowSize:   [10, 10], 
 });
 
 
 //this one to fix known problem with maps: 
 import "leaflet/dist/leaflet.css";
-import {LMap, LTileLayer, LMarker, LPopup, LControlLayers} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LPopup, LControlLayers, LIcon, LCircleMarker} from 'vue2-leaflet';
 import { latLngBounds } from "leaflet"
 
 
 export default {
+  
   components: {
     LMap,
     LTileLayer,
     LMarker,
     latLngBounds,
     LControlLayers,
-    LPopup
+    LPopup,
+    LIcon,
+    LCircleMarker
   },
   props: ['bagged', 'munros'],
   data () {
     return {
-      "selectedMunro" : {},
+      circle: {
+        center: [57.270368,-3.969099],
+        radius: 6,
+        color: 'red'
+      },
+      // defaultIcon: L.icon({
+      //   iconRetinaUrl: '../assets/map-pin-2.png',
+      //   iconUrl: '../assets/map-pin-2.png',
+      //   shadowUrl: 'leaflet/dist/images/marker-shadow.png',
+      //   iconSize:  [20, 20],  
+      //   shadowSize:   [10, 10], 
+        
+        
+      // }),
+      selectedMunro: [],
       zoom: 8,
       minZoom: 8,
       center: [57.270368,-3.969099],

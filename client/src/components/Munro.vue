@@ -1,9 +1,9 @@
 <template lang="html">
 <div class="munro">
     <hr>
-    <h2>{{ munro.name }}</h2>
-    <h3>Height: {{ munro.height }}</h3>
-    <h4>Meaning: {{ munro.meaning}}</h4>
+    <h3>{{ munro.name }}</h3>
+    <h5>Height: {{ munro.height }}</h5>
+    <h5>Meaning: {{ munro.meaning}}</h5>
     <button v-on:click="handleSubmit">Bag Munro</button>
   </div>
 </template>
@@ -46,7 +46,5 @@ export default {
 </script>
 
 <style>
-#munro {
-  width: 100%
-}
+
 </style>

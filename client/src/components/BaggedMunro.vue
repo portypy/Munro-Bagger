@@ -1,8 +1,10 @@
 <template>
 <div>
-  <li>
-      <h1>{{ baggedMunro.name }}</h1>
-  </li>
+      <hr>
+      <h2>{{ baggedMunro.name }}</h2>
+      <h3>Height: {{ baggedMunro.height }}</h3>
+      <h4>Meaning: {{ baggedMunro.meaning}}</h4>
+  
   <button v-on:click="deleteBagged">Delete Bagged Munro</button>
 </div>
 </template>

@@ -20,7 +20,7 @@ export default {
      return {
        bagged: [],
        munros: [],
-       selectedMunro: []
+      //  selectedMunro: []
      }
   },
   components: {
@@ -32,9 +32,9 @@ export default {
   mounted() {
     this.fetchBagged();
     this.fetchMunros();
-    eventBus.$on('selectMunro', (selectedMunro) => {
-      this.selectedMunro = selectedMunro
-      });
+    // eventBus.$on('selectMunro', (selectedMunro) => {
+    //   this.selectedMunro = selectedMunro
+    //   });
 
     eventBus.$on('bag-munro', payload => {
       MunroService.postBagged(payload)

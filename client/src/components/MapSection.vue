@@ -31,16 +31,11 @@
               :key="marker.id"
               @click="selectMunro(marker)"
               :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
-<<<<<<< HEAD
               >
               
               <l-popup>{{ selectedMunro.name }}</l-popup>
               </l-marker>
       
-=======
-              :icon="marker.icon"
-              ></l-marker>
->>>>>>> develop
     </l-map>
   </div>
 </template>

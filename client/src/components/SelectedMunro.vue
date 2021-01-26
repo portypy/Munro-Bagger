@@ -25,7 +25,7 @@ export default {
                     metoffice_loc_id: "350377",
                     region: "Loch Linnhe to Loch Ericht",
                     meaning: "Possibly from an old Gaelic word meaning venomous"
-             }
+             },
         }
     },
     mounted() {

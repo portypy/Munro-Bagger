@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { eventBus } from '../main.js';
 import Munro from './Munro';
 import MunroListHeader from './MunroListHeader';
 import SelectedMunro from './SelectedMunro';
@@ -68,6 +69,11 @@ export default {
     });
     }
     },
+    mounted() {
+      eventBus.$on('selectMunro', () => {
+          this.taboption='selectmunro'
+      });
+    }
 
 }
 </script>

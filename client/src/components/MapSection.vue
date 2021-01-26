@@ -25,11 +25,17 @@
       layer-type="base"/>
       <!-- <l-marker :lat-lng="markerLatLng" ></l-marker> -->
       <l-marker 
+
+      
               v-for="(marker, index) in this.munros"
               :key="marker.id"
               @click="selectMunro(marker)"
               :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
-              ></l-marker>
+              >
+              
+              <l-popup>{{ selectedMunro.name }}</l-popup>
+              </l-marker>
+      
     </l-map>
   </div>
 </template>
@@ -48,7 +54,7 @@ L.Icon.Default.mergeOptions({
 });
 //this one to fix known problem with maps: 
 import "leaflet/dist/leaflet.css";
-import {LMap, LTileLayer, LMarker, LControlLayers} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LPopup, LControlLayers} from 'vue2-leaflet';
 import { latLngBounds } from "leaflet"
 
 
@@ -58,7 +64,8 @@ export default {
     LTileLayer,
     LMarker,
     latLngBounds,
-    LControlLayers
+    LControlLayers,
+    LPopup
   },
   props: ['bagged', 'munros'],
   data () {

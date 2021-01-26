@@ -31,16 +31,11 @@
               :key="marker.id"
               @click="selectMunro(marker)"
               :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
-<<<<<<< HEAD
               >
               
               <l-popup>{{ selectedMunro.name }}</l-popup>
               </l-marker>
       
-=======
-              :icon="marker.icon"
-              ></l-marker>
->>>>>>> develop
     </l-map>
   </div>
 </template>
@@ -109,7 +104,7 @@ export default {
         {
           name: 'Mapbox Satellite',
           visible: false,
-          url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnVtYnVyYWswMDciLCJhIjoiY2trMDY3ZHdxMGVlMzJvcGMyZW8wMjU3dCJ9.iFV6KAaTxjBXXSh_WWRXCA',
+          url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=',
           attribution:
            'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
         }

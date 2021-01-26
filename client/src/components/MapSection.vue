@@ -13,7 +13,6 @@
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
-      <!-- <l-tile-layer :url="url"></l-tile-layer> -->
       <l-control-layers position="topright"></l-control-layers>
       <l-tile-layer
       v-for="tileProvider in tileProviders"
@@ -23,18 +22,22 @@
       :url="tileProvider.url"
       :attribution="tileProvider.attribution"
       layer-type="base"/>
-      <!-- <l-marker :lat-lng="markerLatLng" ></l-marker> -->
-      <l-marker 
-
       
+      <l-marker 
               v-for="(marker, index) in this.munros"
               :key="marker.id"
               @click="selectMunro(marker)"
-              :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
-              >
+              :lat-lng="[marker.latlng_lat, marker.latlng_lng]" >
               
               <l-popup>{{ selectedMunro.name }}</l-popup>
-              </l-marker>
+              
+      </l-marker>
+      <l-circle
+      :lat-lng="circle.center"
+      :radius="circle.radius"
+      :color="circle.color"
+    />
+      
       
     </l-map>
   </div>
@@ -43,12 +46,9 @@
 <script>
 import { eventBus } from '../main.js';
 
-
-
-
 //this one to fix known problem with maps: 
 import "leaflet/dist/leaflet.css";
-import {LMap, LTileLayer, LMarker, LPopup, LControlLayers} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LPopup, LControlLayers, LCircle} from 'vue2-leaflet';
 import { latLngBounds } from "leaflet"
 
 
@@ -59,15 +59,21 @@ export default {
     LMarker,
     latLngBounds,
     LControlLayers,
-    LPopup
+    LPopup,
+    LCircle
   },
   props: ['bagged', 'munros'],
   data () {
     return {
-      "selectedMunro" : {},
+      circle: {
+        center: [47.413220, -1.0482],
+        radius: 4500,
+        color: 'red'
+      },
+      selectedMunro: [],
       zoom: 8,
       minZoom: 8,
-      center: [57.270368,-3.969099],
+      center: [47.413220, -1.0482],
       bounds: latLngBounds([
         [58.78681243755122, -1.954226318129988],
         [55.69782468189247, -5.997195068129988]

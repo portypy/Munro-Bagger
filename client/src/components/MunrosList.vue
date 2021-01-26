@@ -50,7 +50,7 @@ export default {
         'munro-list-header': MunroListHeader,
         'selected-munro': SelectedMunro,
         'weather-section': Weather,
-        'bagged-munro': BaggedMunro
+        'bagged-munro': BaggedMunro,
     },
     props: ['munros',
             'bagged'],

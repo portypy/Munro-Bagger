@@ -40,6 +40,12 @@ export default {
       MunroService.postBagged(payload)
       .then(munro => this.bagged.push(munro));
     });
+
+    eventBus.$on('delete-bagged', (id) => {
+      MunroService.deleteBagged(id);
+      const index = this.bagged.findIndex(bagged => bagged._id === id);
+      this.bagged.splice(index, 1);
+    })
      
   },
 

@@ -81,9 +81,9 @@ data () {
     }
 },
 mounted() {
-    eventBus.$on('selectMunro',munro => {
-        this.getWeather(munro);
-    })
+    // eventBus.$on('selectMunro',munro => {
+    //     this.getWeather(munro);
+    // })
 },
 methods: {
     getWeather(munro) {

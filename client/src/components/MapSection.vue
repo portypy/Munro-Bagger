@@ -25,11 +25,22 @@
       layer-type="base"/>
       <!-- <l-marker :lat-lng="markerLatLng" ></l-marker> -->
       <l-marker 
+
+      
               v-for="(marker, index) in this.munros"
               :key="marker.id"
               @click="selectMunro(marker)"
               :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
+<<<<<<< HEAD
+              >
+              
+              <l-popup>{{ selectedMunro.name }}</l-popup>
+              </l-marker>
+      
+=======
+              :icon="marker.icon"
               ></l-marker>
+>>>>>>> develop
     </l-map>
   </div>
 </template>
@@ -43,12 +54,14 @@ L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('../assets/map-pin.png'),
   iconUrl: require('../assets/map-pin.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-  iconSize:     [20, 18], // size of the icon
+  iconSize:     [20, 20], // size of the icon
   shadowSize:   [10, 10], // size of the shadow
 });
+
+
 //this one to fix known problem with maps: 
 import "leaflet/dist/leaflet.css";
-import {LMap, LTileLayer, LMarker, LControlLayers} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LPopup, LControlLayers} from 'vue2-leaflet';
 import { latLngBounds } from "leaflet"
 
 
@@ -58,7 +71,8 @@ export default {
     LTileLayer,
     LMarker,
     latLngBounds,
-    LControlLayers
+    LControlLayers,
+    LPopup
   },
   props: ['bagged', 'munros'],
   data () {
@@ -95,7 +109,7 @@ export default {
         {
           name: 'Mapbox Satellite',
           visible: false,
-          url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=TOKENhere',
+          url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnVtYnVyYWswMDciLCJhIjoiY2trMDY3ZHdxMGVlMzJvcGMyZW8wMjU3dCJ9.iFV6KAaTxjBXXSh_WWRXCA',
           attribution:
            'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
         }
@@ -116,10 +130,9 @@ export default {
       this.bounds = bounds;
     },
     selectMunro(item) {
-      console.log(item);
       this.selectedMunro = item
       eventBus.$emit('selectMunro', this.selectedMunro)
-    },
+    }
   }
 }
 </script>

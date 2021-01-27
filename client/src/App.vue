@@ -11,7 +11,6 @@ import { eventBus} from './main.js';
 import MunroService from './services/MunroService';
 import MunrosList from './components/MunrosList';
 import MapSection from './components/MapSection';
-// import Weather from './components/Weather'
 
 
 export default {
@@ -19,22 +18,18 @@ export default {
   data() {
      return {
        bagged: [],
-       munros: [],
-      //  selectedMunro: []
+       munros: []
      }
   },
   components: {
     'munros-list': MunrosList,
     'map-section': MapSection,
-    // 'weather-section': Weather
     
   },
   mounted() {
     this.fetchBagged();
     this.fetchMunros();
-    // eventBus.$on('selectMunro', (selectedMunro) => {
-    //   this.selectedMunro = selectedMunro
-    //   });
+    
 
     eventBus.$on('bag-munro', payload => {
       MunroService.postBagged(payload)

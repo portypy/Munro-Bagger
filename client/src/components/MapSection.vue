@@ -22,7 +22,6 @@
       :url="tileProvider.url"
       :attribution="tileProvider.attribution"
       layer-type="base"/>
-      
       <l-marker 
               v-for="(marker, index) in this.munros"
               :key="marker.id"
@@ -32,11 +31,11 @@
               <l-popup>{{ selectedMunro.name }}</l-popup>
               
       </l-marker>
-      <l-circle
-      :lat-lng="circle.center"
+      <!-- <l-circle 
+      :lat-lng="getLatLngSelected(this.selectedMunro)"
       :radius="circle.radius"
       :color="circle.color"
-    />
+    /> -->
       
       
     </l-map>
@@ -48,11 +47,12 @@ import { eventBus } from '../main.js';
 
 //this one to fix known problem with maps: 
 import "leaflet/dist/leaflet.css";
-import {LMap, LTileLayer, LMarker, LPopup, LControlLayers, LCircle} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LPopup, LControlLayers, LIcon, LCircleMarker, LCircle} from 'vue2-leaflet';
 import { latLngBounds } from "leaflet"
 
 
 export default {
+  
   components: {
     LMap,
     LTileLayer,
@@ -60,20 +60,18 @@ export default {
     latLngBounds,
     LControlLayers,
     LPopup,
+    LIcon,
+    LCircleMarker,
     LCircle
   },
   props: ['bagged', 'munros'],
   data () {
     return {
-      circle: {
-        center: [47.413220, -1.0482],
-        radius: 4500,
-        color: 'red'
-      },
+    
       selectedMunro: [],
       zoom: 8,
       minZoom: 8,
-      center: [47.413220, -1.0482],
+      center: [57.270368,-3.969099],
       bounds: latLngBounds([
         [58.78681243755122, -1.954226318129988],
         [55.69782468189247, -5.997195068129988]
@@ -84,6 +82,11 @@ export default {
         [55.69782468189247, -5.997195068129988]
       ]),
       // markerLatLng: [57.070368, -3.669099],
+      circle: {
+        // center: [57.270368,-3.969099],
+        radius: 2000,
+        color: 'red'
+      },
       tileProviders: [
         {
           name: 'OpenStreetMap',
@@ -125,6 +128,9 @@ export default {
     selectMunro(item) {
       this.selectedMunro = item
       eventBus.$emit('selectMunro', this.selectedMunro)
+    },
+    getLatLngSelected(selected){
+      return [selected.latlng_lat, selected.latlng_lng]
     }
   }
 }

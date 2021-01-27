@@ -1,6 +1,9 @@
 <template lang="html">
-  <div id="MunrosList">
-   <munro-list-header/>
+    <div id="MunrosList">
+                <div id="MunrosListHeader">
+                   <h5>282 munro's</h5>
+		                <h1>Scottish Munro's</h1>
+              	</div>
                 <div class="tabs">
                     <ul>
                         <li :class="[ taboption === 'selectmunro' ? 'is-active' : '']"><a @click="taboption='selectmunro'">select munro</a></li>
@@ -11,15 +14,18 @@
 
                 <div class="box help-content">
                     <div v-if="taboption ==='selectmunro'">
-                       <selected-munro/>
+                       <selected-munro :selectedMunro="selectedMunro"/>
                         <weather-section/>
                     </div>
                     <div v-if="taboption ==='allmunros'">
+                        <div class="search-wrapper">
+                        <input type="text" v-model="search" placeholder="Search munro.."/>
+                        </div>
                           <div id="filters" > 
                       <button v-on:click="filterHeight">Height</button>
                       <button v-on:click="filterName">Name</button>
                       </div>
-                        <munro v-for="munro, index in munros" :key="index" :munro="munro" />
+                        <munro v-for="munro, index in filteredList" :key="index" :munro="munro" />
                     </div>
                     <div v-if="taboption ==='mybag'">
                        <bagged-munro v-for="baggedMunro in bagged" :baggedMunro="baggedMunro" />
@@ -30,8 +36,8 @@
 </template>
 
 <script>
+import { eventBus } from '../main.js';
 import Munro from './Munro';
-import MunroListHeader from './MunroListHeader';
 import SelectedMunro from './SelectedMunro';
 import Weather from './Weather'
 import BaggedMunro from './BaggedMunro';
@@ -43,17 +49,19 @@ export default {
      data() {
             return {
                 taboption: 'selectmunro',
+                search: '',
+                selectedMunro: []
             }
         },
     components: {
         'munro': Munro,
-        'munro-list-header': MunroListHeader,
         'selected-munro': SelectedMunro,
         'weather-section': Weather,
         'bagged-munro': BaggedMunro,
     },
     props: ['munros',
-            'bagged'],
+            'bagged',
+            ],
 
 
     methods: {
@@ -68,6 +76,19 @@ export default {
     });
     }
     },
+    mounted() {
+      eventBus.$on('selectMunro', (selectedMunro) => {
+          this.taboption='selectmunro'
+          this.selectedMunro = selectedMunro
+      });
+    },
+    computed: {
+    filteredList() {
+      return this.munros.filter(munro => {
+        return munro.name.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
+  }
 
 }
 </script>

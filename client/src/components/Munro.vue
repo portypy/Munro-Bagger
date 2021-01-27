@@ -26,8 +26,6 @@ export default {
       };
 
         eventBus.$emit('bag-munro', payload);
-        
-
     }
 }
 }

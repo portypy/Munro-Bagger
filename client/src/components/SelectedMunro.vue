@@ -6,27 +6,19 @@
     <h3>Height: {{ selectedMunro.height }}</h3>
     <h4>Meaning: {{ selectedMunro.meaning}}</h4>
     <button>Bag Munro</button>
-     
+     <weather-section :selectedMunro="selectedMunro"/>
   </div>
 
 </template>
 
 <script>
-import { eventBus } from '../main.js';
+import Weather from './Weather'
 export default {
     name: 'selected-munro',
-    props: ['selectedMunro']
-    // data (){
-    //     return {
-    //          selectedMunro: { }
-    //     }
-    // },
-  //   mounted() {
-  //   eventBus.$on('selectMunro', (selectedMunro) => {
-  //     this.selectedMunro = selectedMunro
-  //     })
-     
-  // }
+    props: ['selectedMunro'],
+    components: {
+        'weather-section': Weather,
+    },
 }
 </script>
 

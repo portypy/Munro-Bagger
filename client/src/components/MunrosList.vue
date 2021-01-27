@@ -15,7 +15,6 @@
                 <div class="box help-content">
                     <div v-if="taboption ==='selectmunro'">
                        <selected-munro :selectedMunro="selectedMunro"/>
-                        <weather-section/>
                     </div>
                     <div v-if="taboption ==='allmunros'">
                         <div class="search-wrapper">
@@ -39,7 +38,6 @@
 import { eventBus } from '../main.js';
 import Munro from './Munro';
 import SelectedMunro from './SelectedMunro';
-import Weather from './Weather'
 import BaggedMunro from './BaggedMunro';
 
 
@@ -56,7 +54,6 @@ export default {
     components: {
         'munro': Munro,
         'selected-munro': SelectedMunro,
-        'weather-section': Weather,
         'bagged-munro': BaggedMunro,
     },
     props: ['munros',

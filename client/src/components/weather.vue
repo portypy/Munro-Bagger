@@ -75,22 +75,30 @@ import { eventBus } from '../main'
 
 export default {
 name: 'weather-section',
+props: ['selectedMunro'],
 data () {
     return {
         dataFromAPI: null
     }
 },
-mounted() {
-    eventBus.$on('selectMunro',munro => {
-        this.getWeather(munro);
-    })
+// mounted() {
+//     eventBus.$on('selectMunro',() => {
+//         this.getWeather(this.selectedMunro);
+//     })
+  
+// },
+
+watch:{
+    selectedMunro: function () {
+        this.getWeather(this.selectedMunro)
+    }
 },
+
 methods: {
-    getWeather(munro) {
-        fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${munro.metoffice_loc_id}?res=daily&key=b9805b0f-ca36-48a5-a61c-190441b180ed`)
+    getWeather(selectedMunro) {
+         fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${selectedMunro.metoffice_loc_id}?res=`)
         .then( res => res.json())
         .then(data => this.dataFromAPI = data);
-
     },
     
     getDayDate(date){

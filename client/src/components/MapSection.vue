@@ -31,13 +31,6 @@
               <l-popup>{{ selectedMunro.name }}</l-popup>
               
       </l-marker>
-      <!-- <l-circle 
-      :lat-lng="getLatLngSelected(this.selectedMunro)"
-      :radius="circle.radius"
-      :color="circle.color"
-    /> -->
-      
-      
     </l-map>
   </div>
 </template>
@@ -82,11 +75,7 @@ export default {
         [55.69782468189247, -5.997195068129988]
       ]),
       // markerLatLng: [57.070368, -3.669099],
-      circle: {
-        // center: [57.270368,-3.969099],
-        radius: 2000,
-        color: 'red'
-      },
+      
       tileProviders: [
         {
           name: 'OpenStreetMap',
@@ -129,9 +118,9 @@ export default {
       this.selectedMunro = item
       eventBus.$emit('selectMunro', this.selectedMunro)
     },
-    getLatLngSelected(selected){
-      return [selected.latlng_lat, selected.latlng_lng]
-    }
+    // getLatLngSelected(selected){
+    //   return [selected.latlng_lat, selected.latlng_lng]
+    // }
   }
 }
 </script>

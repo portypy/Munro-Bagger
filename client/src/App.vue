@@ -32,8 +32,13 @@ export default {
     
 
     eventBus.$on('bag-munro', payload => {
-      MunroService.postBagged(payload)
+      if(this.bagged.some(munro => munro.name === payload.name)){
+    alert("Munro already in your bagged list");
+    } else{
+    MunroService.postBagged(payload)
       .then(munro => this.bagged.push(munro));
+    }
+      
     });
 
     eventBus.$on('delete-bagged', (id) => {

@@ -2,7 +2,7 @@
     <div id="MunrosList">
                 <div id="MunrosListHeader">
                    <h5>282 munro's</h5>
-		                <h1>Scottish Munro's</h1>
+		                <h1>Scottish Munros</h1>
               	</div>
                 <div class="tabs">
                     <ul>
@@ -19,11 +19,12 @@
                     <div v-if="taboption ==='allmunros'">
                         <div class="search-wrapper">
                         <input type="text" v-model="search" placeholder="Search munro.."/>
-                        </div>
+                        
                           <div id="filters" > 
-                      <button v-on:click="filterHeight">Height</button>
-                      <button v-on:click="filterName">Name</button>
-                      </div>
+                        <button v-on:click="filterHeight">Height</button>
+                        <button v-on:click="filterName">Name</button>
+                          </div>
+                          </div>
                         <munro v-for="munro, index in filteredList" :key="index" :munro="munro" />
                     </div>
                     <div v-if="taboption ==='mybag'">
@@ -92,20 +93,77 @@ export default {
 
 <style lang="css" >
 #MunroList {
-    width: 100%; 
+     width:auto;
     font-family: Avenir, Helvetica, Arial, sans-serif;  
 }
-
-.tabs li.is-active a {
-    list-style: none;
-    border-bottom-color: #000000;
-    color: #000000;
-    border-bottom: 3px solid;
-    font-weight: bold;
+.search-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1em;
 }
-code, pre {
-    color: #1b1e21 !important;
-    background-color: white !important;
+
+
+input[type=text] {
+  color:#0b2d3148;
+  width: 60%;
+  padding: 8px 12px;
+  margin: 8px 0;
+  
+  box-sizing: border-box;
+  
+  border: 1px solid #0b2d3148;
+  border-radius: 40px;
+}
+ul {
+   display: flex;
+    padding-inline-start: 0px;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+#filters > button {
+    list-style: none;
+  
+  background-color: white; 
+  border-style: solid;
+  border-color:#0b2d3148;
+  border-width: 1px;
+  padding: 5px 20px;
+  margin-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: none;
+  cursor: pointer;
+  border-radius: 30px;
+}
+.tabs li{
+  list-style: none;
+  
+  background-color: white; 
+  border: none;
+  padding: 5px 20px;
+  margin-right: 15px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.044), 0 5px 15px 0 rgba(0, 0, 0, 0.064);
+  cursor: pointer;
+  border-radius: 30px;
+}
+.tabs li.is-active a {
+  
+    list-style: none;
+    color: black;
+    font-weight: 600;
+    /* background-color: #0b2d3148; */
+}
+
+
+#munrosListHeader {
+  margin-bottom: -1em;
+  margin-top: 5em;
+  font-weight: 500;
 }
 
 </style>

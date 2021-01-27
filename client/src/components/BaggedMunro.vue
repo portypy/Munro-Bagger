@@ -1,11 +1,14 @@
 <template>
 <div>
       <hr>
+      <div class="munro-wrapper">
+      <div class="text-wrapper">
       <h2>{{ baggedMunro.name }}</h2>
       <h3>Height: {{ baggedMunro.height }}</h3>
       <h4>Meaning: {{ baggedMunro.meaning}}</h4>
-  
-  <button v-on:click="deleteBagged">Delete Bagged Munro</button>
+      </div>
+  <button v-on:click="deleteBagged">–</button>
+   </div>
 </div>
 </template>
 
@@ -23,5 +26,9 @@ methods: {
 </script>
 
 <style>
-
+.munro-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>

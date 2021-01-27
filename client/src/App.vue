@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <munros-list :munros="munros" :bagged="bagged"/> 
+    <munros-list :munros="munros" :bagged="bagged" class="munros-list"/> 
     <map-section :munros="munros" :bagged="bagged"/>
     
   </div>
@@ -67,9 +67,14 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #0B2D31;
   display: flex;
-  width: 100%;
+  margin-left: 2em;
+  margin-top: -0.5em;
 }
+.munros-list {
+  width: 45%;
 
+}
+button:focus {outline:0;}
 </style>

@@ -17,7 +17,7 @@ export default {
   name: 'app',
   data() {
      return {
-       bagged: [],
+       bagged: null,
        munros: []
      }
   },
@@ -29,12 +29,15 @@ export default {
   mounted() {
     this.fetchBagged();
     this.fetchMunros();
+      eventBus.$on('bag-munro', payload => {
+          if(this.bagged.some(munro => munro.name === payload.name)){
+        alert("Munro already in your bagged list");
+        } else{
+        MunroService.postBagged(payload)
+          .then(munro => this.bagged.push(munro));
+        }
+        });
     
-
-    eventBus.$on('bag-munro', payload => {
-      MunroService.postBagged(payload)
-      .then(munro => this.bagged.push(munro));
-    });
 
     eventBus.$on('delete-bagged', (id) => {
       MunroService.deleteBagged(id);

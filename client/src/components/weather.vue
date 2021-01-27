@@ -81,22 +81,15 @@ data () {
         dataFromAPI: null
     }
 },
-// mounted() {
-//     eventBus.$on('selectMunro',() => {
-//         this.getWeather(this.selectedMunro);
-//     })
-  
-// },
-
-watch:{
-    selectedMunro: function () {
-        this.getWeather(this.selectedMunro)
-    }
+mounted() {
+    eventBus.$on('selectMunro',(selectedMunro) => {
+        this.getWeather(selectedMunro);
+    })
 },
 
 methods: {
     getWeather(selectedMunro) {
-         fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${selectedMunro.metoffice_loc_id}?res=`)
+         fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${selectedMunro.metoffice_loc_id}?res=daily&key=`)
         .then( res => res.json())
         .then(data => this.dataFromAPI = data);
     },

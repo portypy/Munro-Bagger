@@ -22,6 +22,12 @@
       :url="tileProvider.url"
       :attribution="tileProvider.attribution"
       layer-type="base"/>
+      <l-marker v-for="(marker, index) in this.bagged"
+              :key="marker.id"
+              @click="selectMunro(marker)"
+              :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
+                :icon="greenIcon">
+                </l-marker>
       <l-marker 
               v-for="(marker, index) in this.munros"
               :key="marker.id"
@@ -31,6 +37,16 @@
               <l-popup>{{ selectedMunro.name }}</l-popup>
               
       </l-marker>
+      <l-marker v-for="(marker, index) in this.bagged"
+              :key="marker.id"
+              @click="selectMunro(marker)"
+              :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
+              :icon="baggedIcon">
+
+                <l-popup>{{ selectedMunro.name }}</l-popup>
+                </l-marker>
+     
+</l-map>
     </l-map>
   </div>
 </template>
@@ -60,8 +76,19 @@ export default {
   props: ['bagged', 'munros'],
   data () {
     return {
-    
-      selectedMunro: [],
+      
+      selectedMunro: {
+   
+  }
+      ,
+ baggedIcon: L.icon({
+    iconUrl: require('../assets/map-pin-2.png'), 
+    iconSize:     [20, 20], 
+    iconAnchor:   [10, 10],
+}),
+
+      // L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map),
+      // selectedMarker: this.getLatLngSelected(this.selectedMunro),
       zoom: 8,
       minZoom: 8,
       center: [57.270368,-3.969099],
@@ -94,17 +121,16 @@ export default {
         {
           name: 'Mapbox Satellite',
           visible: false,
-          url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=',
+          url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnVtYnVyYWswMDciLCJhIjoiY2trMDY3ZHdxMGVlMzJvcGMyZW8wMjU3dCJ9.iFV6KAaTxjBXXSh_WWRXCA',
           attribution:
            'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
         }
 
       ],
     };
-    
   },
   
-  methods: {
+    methods: {
     zoomUpdated (zoom) {
       this.zoom = zoom;
     },
@@ -118,11 +144,10 @@ export default {
       this.selectedMunro = item
       eventBus.$emit('selectMunro', this.selectedMunro)
     },
-    // getLatLngSelected(selected){
-    //   return [selected.latlng_lat, selected.latlng_lng]
-    // }
-  }
-}
+  //   getLatLngSelected(selected){ 
+  //     return [selected.latlng_lat, selected.latlng_lng]    
+  // }
+}}
 </script>
 
 <style lang="css" scoped>

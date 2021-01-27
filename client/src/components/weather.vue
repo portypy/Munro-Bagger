@@ -89,7 +89,7 @@ mounted() {
 
 methods: {
     getWeather(selectedMunro) {
-         fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${selectedMunro.metoffice_loc_id}?res=daily&key=`)
+         fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${selectedMunro.metoffice_loc_id}?res=daily&key=b9805b0f-ca36-48a5-a61c-190441b180ed`)
         .then( res => res.json())
         .then(data => this.dataFromAPI = data);
     },

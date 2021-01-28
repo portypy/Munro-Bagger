@@ -135,7 +135,7 @@ export default {
 }}
 </script>
 
-<style lang="css" scoped>
+<style lang="css" >
 
 
 </style>

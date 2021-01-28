@@ -1,14 +1,24 @@
 <template  lang="html">
 
 <div v-if="selectedMunro" class="munro">
- 
-    <h2>{{ selectedMunro.name }}</h2>
-    <h3>Height: {{ selectedMunro.height }}</h3>
-    <h4>Meaning: {{ selectedMunro.meaning}}</h4>
-    <button v-on:click="handleSubmit">Bag Munro</button>
+    <hr>
+        <div class="munro-text-wrapper">
+          <div class="munro-text">
+            <h2>{{ selectedMunro.name }}</h2>
+            <h3>Height: {{ selectedMunro.height }}</h3>
+            <h4>Meaning: {{ selectedMunro.meaning}}</h4>
+          </div>
+            <div id="add-button">
+               <button v-on:click="handleSubmit">+</button>
+            </div>
+     
+        </div>
+     
      <weather-section :selectedMunro="selectedMunro"/>
-  </div>
-
+ </div>
+  
+ 
+  
 </template>
 
 <script>
@@ -38,6 +48,30 @@ export default {
 }
 </script>
 
-<style>
+<style >
 
+.munro-text-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+button {
+  background-color: white; 
+  padding: 5px 11px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.3em;
+  margin-right: 1em;
+  border: none;
+  float: right;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.044), 0 3px 20px 0 rgba(0, 0, 0, 0.064);
+  cursor: pointer;
+  border-radius: 50%;
+}
+hr {
+  border-top: 0.5px solid rgb(247, 247, 247);
+}
+#munro {
+  display: flex;
+}
 </style>

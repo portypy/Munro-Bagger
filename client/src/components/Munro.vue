@@ -1,10 +1,14 @@
 <template lang="html">
 <div class="munro">
     <hr>
+    <div class="munro-wrapper">
+    <div class="text-wrapper">
     <h3>{{ munro.name }}</h3>
     <h5>Height: {{ munro.height }}</h5>
-    <h5>Meaning: {{ munro.meaning}}</h5>
-    <button v-on:click="handleSubmit">Bag Munro</button>
+    </div>
+    <!-- <h5>Meaning: {{ munro.meaning}}</h5> -->
+    <button v-on:click="handleSubmit">+</button>
+    </div>
   </div>
 </template>
 
@@ -32,5 +36,9 @@ export default {
 </script>
 
 <style>
-
+.munro-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>

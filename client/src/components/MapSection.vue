@@ -3,49 +3,42 @@
   <div style="height: 100vh; width: 50vw; position: fixed; right: 0px;" id="mapContainer">
     
     <l-map
-      style="height: 100%; width: 100%"
-      :zoom="zoom"
-      :center="center"
-      :bounds="bounds"
-      :max-bounds="maxBounds"
-      :min-zoom="minZoom"
-      @update:zoom="zoomUpdated"
-      @update:center="centerUpdated"
-      @update:bounds="boundsUpdated"
+          style="height: 100%; width: 100%"
+          :zoom="zoom"
+          :center="center"
+          :bounds="bounds"
+          :max-bounds="maxBounds"
+          :min-zoom="minZoom"
+          @update:zoom="zoomUpdated"
+          @update:center="centerUpdated"
+          @update:bounds="boundsUpdated"
     >
       <l-control-layers position="topright"></l-control-layers>
       <l-tile-layer
-      v-for="tileProvider in tileProviders"
-      :key="tileProvider.name"
-      :name="tileProvider.name"
-      :visible="tileProvider.visible"
-      :url="tileProvider.url"
-      :attribution="tileProvider.attribution"
-      layer-type="base"/>
-      <l-marker v-for="(marker, index) in this.bagged"
-              :key="marker.id"
-              @click="selectMunro(marker)"
-              :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
-                :icon="greenIcon">
-                </l-marker>
-      <l-marker 
-              v-for="(marker, index) in this.munros"
-              :key="marker.id"
-              @click="selectMunro(marker)"
-              :lat-lng="[marker.latlng_lat, marker.latlng_lng]" >
-              
-              <l-popup>{{ selectedMunro.name }}</l-popup>
-              
-      </l-marker>
+          v-for="tileProvider in tileProviders"
+          :key="tileProvider.name"
+          :name="tileProvider.name"
+          :visible="tileProvider.visible"
+          :url="tileProvider.url"
+          :attribution="tileProvider.attribution"
+          layer-type="base"/>
       <l-marker v-for="(marker, index) in this.bagged"
               :key="marker.id"
               @click="selectMunro(marker)"
               :lat-lng="[marker.latlng_lat, marker.latlng_lng]"
               :icon="baggedIcon">
-
-                <l-popup>{{ selectedMunro.name }}</l-popup>
-                </l-marker>
-     
+              <l-tooltip>{{ marker.name }}</l-tooltip>
+              <l-popup>{{ marker.name }}</l-popup>
+      </l-marker>
+      <l-marker 
+              v-for="(marker, index) in this.munros"
+              :key="marker.id"
+              @click="selectMunro(marker)"
+              :lat-lng="[marker.latlng_lat, marker.latlng_lng]" >
+              <l-tooltip>{{ marker.name }}</l-tooltip>
+              <l-popup>{{ marker.name }}</l-popup>
+              
+      </l-marker>
 </l-map>
     </l-map>
   </div>
@@ -56,12 +49,12 @@ import { eventBus } from '../main.js';
 
 //this one to fix known problem with maps: 
 import "leaflet/dist/leaflet.css";
-import {LMap, LTileLayer, LMarker, LPopup, LControlLayers, LIcon, LCircleMarker, LCircle} from 'vue2-leaflet';
-import { latLngBounds } from "leaflet"
+
+import {LMap, LTileLayer, LMarker, LPopup, LControlLayers, LIcon, LTooltip, LCircleMarker } from 'vue2-leaflet';
+import { latLngBounds, } from "leaflet"
 
 
-export default {
-  
+export default {  
   components: {
     LMap,
     LTileLayer,
@@ -70,25 +63,20 @@ export default {
     LControlLayers,
     LPopup,
     LIcon,
-    LCircleMarker,
-    LCircle
+    LTooltip,
+    LCircleMarker
   },
   props: ['bagged', 'munros'],
   data () {
     return {
-      
-      selectedMunro: {
-   
-  }
-      ,
- baggedIcon: L.icon({
-    iconUrl: require('../assets/map-pin-2.png'), 
-    iconSize:     [20, 20], 
-    iconAnchor:   [10, 10],
-}),
-
-      // L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map),
-      // selectedMarker: this.getLatLngSelected(this.selectedMunro),
+      selectedMunro: {},
+      baggedIcon: L.icon({
+          iconUrl: require('../assets/map-pin-2.png'), 
+          iconSize:     [20, 20], 
+          iconAnchor:   [10, 10],
+          popupAnchor:  [0, -10],
+          tooltipAnchor:  [0, -10]
+      }),
       zoom: 8,
       minZoom: 8,
       center: [57.270368,-3.969099],
@@ -96,13 +84,10 @@ export default {
         [58.78681243755122, -1.954226318129988],
         [55.69782468189247, -5.997195068129988]
       ]),
-      //need some adjustments to the west, check when zoom in
       maxBounds: latLngBounds([
         [58.78681243755122, -1.954226318129988],
-        [55.69782468189247, -5.997195068129988]
-      ]),
-      // markerLatLng: [57.070368, -3.669099],
-      
+        [55.69782468189247, -6.997195068129988]
+      ]),     
       tileProviders: [
         {
           name: 'OpenStreetMap',
@@ -126,11 +111,11 @@ export default {
            'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
         }
 
-      ],
-    };
-  },
+          ],
+        };
+     },
   
-    methods: {
+  methods: {
     zoomUpdated (zoom) {
       this.zoom = zoom;
     },
@@ -144,9 +129,9 @@ export default {
       this.selectedMunro = item
       eventBus.$emit('selectMunro', this.selectedMunro)
     },
-  //   getLatLngSelected(selected){ 
-  //     return [selected.latlng_lat, selected.latlng_lng]    
-  // }
+    getCoords(munro){
+          return [munro.latlng_lat,latlng_lng]
+    }
 }}
 </script>
 

@@ -17,7 +17,8 @@ L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('./assets/map-pin.png'),
   iconUrl: require('./assets/map-pin.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-  iconSize:     [20, 20], // size of the icon
-  shadowSize:   [10, 10], // size of the shadow
+  iconSize:     [20, 20], 
+  shadowSize:   [10, 10], 
   iconAnchor:   [10, 10],
+  popupAnchor:  [0, - 10]
 });

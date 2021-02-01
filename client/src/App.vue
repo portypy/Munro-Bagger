@@ -73,7 +73,7 @@ export default {
   margin-top: -0.5em;
 }
 .munros-list {
-  width: 45%;
+  width: 35%;
 
 }
 button:focus {outline:0;}

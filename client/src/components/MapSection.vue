@@ -39,8 +39,8 @@
               <l-popup>{{ marker.name }}</l-popup>
               
       </l-marker>
-</l-map>
     </l-map>
+
   </div>
 </template>
 
@@ -129,9 +129,9 @@ export default {
       this.selectedMunro = item
       eventBus.$emit('selectMunro', this.selectedMunro)
     },
-    getCoords(munro){
-          return [munro.latlng_lat,latlng_lng]
-    }
+    // getCoords(munro){
+    //       return [munro.latlng_lat,munro.latlng_lng]
+    // }
 }}
 </script>
 

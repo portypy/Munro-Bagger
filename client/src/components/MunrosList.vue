@@ -64,7 +64,7 @@ export default {
 
     methods: {
     filterHeight() {
-      this.munros.sort((munro1, munro2) => munro1.height - munro2.height);
+      this.munros.sort((munro1, munro2) =>   munro2.height - munro1.height   );
     },
     filterName(){
        this.munros.sort( function( a, b ) {

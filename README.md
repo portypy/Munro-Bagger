@@ -31,3 +31,15 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
 npm run server:dev
 ```
+
+# database
+
+### In order to save visited munros MungoDB is necessary.
+
+```
+mongo
+```
+
+```
+use mountains
+```

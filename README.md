@@ -6,35 +6,38 @@ Metoffice API is used to create a weather forecast for a selected Munro and the 
 
 ![Screenshot 2021-03-18 at 10 48 37](https://user-images.githubusercontent.com/72009564/111614816-f1d63d80-87d7-11eb-9115-0a17e98ad279.png)
 
-# client
+# How to run
 
-## Project setup
+
+## client
+
+#### Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Customize configuration
+##### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-# server
+## server
 
 ```
 npm run server:dev
 ```
 
-# database
+## database
 
-### In order to save visited munros MungoDB is necessary.
+#### In order to save visited munros MungoDB is necessary.
 
 ```
 mongo

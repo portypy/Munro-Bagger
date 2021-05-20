@@ -129,9 +129,7 @@ export default {
       this.selectedMunro = item
       eventBus.$emit('selectMunro', this.selectedMunro)
     },
-    // getCoords(munro){
-    //       return [munro.latlng_lat,munro.latlng_lng]
-    // }
+    
 }}
 </script>
 
